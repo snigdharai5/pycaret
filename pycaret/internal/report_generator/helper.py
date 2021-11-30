@@ -4,15 +4,18 @@
 def get_plot_list(model_name, model_type):
     plot_list = ''
     if model_type == 'regression':
-        plot_list = ['residuals','error','cooks','rfe','learning','manifold','feature','feature_all','parameter','tree','vc']
+        plot_list = ['residuals', 'error', 'cooks', 'rfe', 'learning', 'manifold', 'feature', 'feature_all',
+                     'parameter', 'tree', 'vc']
     elif model_type == 'classification':
-        plot_list = ['auc', 'pr', 'confusion_matrix', 'error', 'class_report', 'boundary', 'learning', 'vc', 'dimension', 'feature', 'feature_all']
+        plot_list = ['auc', 'pr', 'confusion_matrix', 'error', 'class_report', 'boundary', 'learning', 'vc',
+                     'dimension', 'feature', 'feature_all']
     elif model_type == 'clustering':
-        plot_list = ['cluster','tsne', 'elbow', 'silhouette', 'distance', 'distribution']
+        plot_list = ['cluster', 'tsne', 'elbow', 'silhouette', 'distance', 'distribution']
     elif model_type == 'anomaly_detection':
-        plot_list == ['tsne','umap']
+        plot_list == ['tsne', 'umap']
     elif model_type == 'nlp':
-        plot_list = ['frequency','distribution','bigram','trigram','sentiment','tsne','topic_distribution','wordcloud']
+        plot_list = ['frequency', 'distribution', 'bigram', 'trigram', 'sentiment', 'tsne', 'topic_distribution',
+                     'wordcloud']
     return plot_list
 
 
@@ -40,7 +43,229 @@ def get_model_definition_regression(model_name):
 
 def get_model_definition_classification(model_name):
     model_name_dict = {
-
+        'lr': 'Linear regression model with a single explanatory variable.It concerns two-dimensional sample points '
+              'with one independent variable and one dependent variableand finds a linear function that, '
+              'as accurately as possible, predicts the dependent variable values as a function of the independent '
+              'variable. It fits a linear model with coefficients w = (w1, …, wp) to minimize the residual sum of '
+              'squares between the observed targets in the dataset, and the targets predicted by the linear '
+              'approximation.',
+        'lasso': 'Lasso regression is a type of linear regression that uses shrinkage. Shrinkage is where data values '
+                 'are shrunk towards a central point, like the mean. The lasso procedure encourages simple, '
+                 'sparse models (i.e. models with fewer parameters). This particular type of regression is '
+                 'well-suited for models showing high levels of muticollinearity or when you want to automate certain '
+                 'parts of model selection, like variable selection/parameter elimination.',
+        'ridge': 'Ridge regression addresses some of the problems of Ordinary Least Squares by imposing a penalty on '
+                 'the size of the coefficients. Ridge regression is a way to create a parsimonious model when the '
+                 'number of predictor variables in a set exceeds the number of observations, or when a data set has '
+                 'multicollinearity (correlations between predictor variables).The ridge coefficients minimize a '
+                 'penalized residual sum of squares.',
+        'en': 'The elastic net method performs variable selection and regularization simultaneously. The elastic net '
+              'technique is most appropriate where the dimensional data is greater than the number of samples used. '
+              'Groupings and variables selection are the key roles of the elastic net technique.',
+        'lar': 'Least-angle regression (LARS) is an algorithm for fitting linear regression models to '
+               'high-dimensional data, developed by Bradley Efron, Trevor Hastie, Iain Johnstone and Robert '
+               'Tibshirani. Suppose we expect a response variable to be determined by a linear combination of a '
+               'subset of potential covariates. Then the LARS algorithm provides a means of producing an estimate of '
+               'which variables to include, as well as their coefficients.Instead of giving a vector result, '
+               'the LARS solution consists of a curve denoting the solution for each value of the L1 norm of the '
+               'parameter vector. The algorithm is similar to forward stepwise regression, but instead of including '
+               'variables at each step, the estimated parameters are increased in a direction equiangular to each '
+               'correlations with the residual.',
+        'llar': 'Least-angle regression (LARS) is an algorithm for fitting linear regression models to '
+                'high-dimensional data, developed by Bradley Efron, Trevor Hastie, Iain Johnstone and Robert '
+                'Tibshirani. Suppose we expect a response variable to be determined by a linear combination of a '
+                'subset of potential covariates. Then the LARS algorithm provides a means of producing an estimate of '
+                'which variables to include, as well as their coefficients.Instead of giving a vector result, '
+                'the LARS solution consists of a curve denoting the solution for each value of the L1 norm of the '
+                'parameter vector. The algorithm is similar to forward stepwise regression, but instead of including '
+                'variables at each step, the estimated parameters are increased in a direction equiangular to each '
+                'correlations with the residual.',
+        'omp': 'The orthogonal matching pursuit (OMP) or orthogonal greedy algorithm is more complicated than MP. The '
+               'OMP starts the search by finding a column of A with maximum correlation with measurements y at the '
+               'first step and thereafter at each iteration it searches for the column of A with maximum correlation '
+               'with the current residual. In each iteration, the estimation of the signal vector is updated by the '
+               'highly correlated column of A .',
+        'br': 'Bayesian regression allows a natural mechanism to survive insufficient data or poorly distributed data '
+              'by formulating linear regression using probability distributors rather than point estimates. The '
+              'output or response ‘y’ is assumed to drawn from a probability distribution rather than estimated as a '
+              'single value.One of the most useful type of Bayesian regression is Bayesian Ridge regression which '
+              'estimates a probabilistic model of the regression problem.',
+        'ard': 'Automatic relevance determination (ARD), and the closely-related sparse Bayesian learning (SBL) '
+               'framework, are effective tools for pruning large numbers of irrelevant features. However, '
+               'popular update rules used for this process are either prohibitively slow in practice and/or heuristic '
+               'in nature without proven convergence properties. This paper furnishes an alternative means of '
+               'optimizing a general ARD cost function using an auxiliary function that can naturally be solved using '
+               'a series of re-weighted L1 problems. The result is an efficient algorithm that can be implemented '
+               'using standard convex programming toolboxes and is guaranteed to converge to a stationary point '
+               'unlike existing methods. The analysis also leads to additional insights into the behavior of previous '
+               'ARD updates as well as the ARD cost function. For example, the standard fixed-point updates of MacKay '
+               '(1992) are shown to be iteratively solving a particular min-max problem, although they are not '
+               'guaranteed to lead to a stationary point. The analysis also reveals that ARD is exactly equivalent to '
+               'performing MAP estimation using a particular feature- and noise-dependent \textit{non-factorial} '
+               'weight prior with several desirable properties over conventional priors with respect to feature '
+               'selection. In particular, it provides a tighter approximation to the L0 quasi-norm sparsity measure '
+               'than the L1 norm. Overall these results suggests alternative cost functions and update procedures for '
+               'selecting features and promoting sparse solutions.',
+        'par': 'Passive-Aggressive algorithms are generally used for large-scale learning. It is one of the few '
+               '‘online-learning algorithms‘. In online machine learning algorithms, the input data comes in '
+               'sequential order and the machine learning model is updated step-by-step, as opposed to batch '
+               'learning, where the entire training dataset is used at once. This is very useful in situations where '
+               'there is a huge amount of data and it is computationally infeasible to train the entire dataset '
+               'because of the sheer size of the data. We can simply say that an online-learning algorithm will get a '
+               'training example, update the classifier, and then throw away the example.',
+        'ransac': 'Random sample consensus (RANSAC) is an iterative method to estimate parameters of a mathematical '
+                  'model from a set of observed data that contains outliers, when outliers are to be accorded no '
+                  'influence on the values of the estimates. Therefore, it also can be interpreted as an outlier '
+                  'detection method.[1] It is a non-deterministic algorithm in the sense that it produces a '
+                  'reasonable result only with a certain probability, with this probability increasing as more '
+                  'iterations are allowed. The algorithm was first published by Fischler and Bolles at SRI '
+                  'International in 1981. They used RANSAC to solve the Location Determination Problem (LDP), '
+                  'where the goal is to determine the points in the space that project onto an image into a set of '
+                  'landmarks with known locations. RANSAC uses repeated random sub-sampling.[2] A basic assumption is '
+                  'that the data consists of "inliers", i.e., data whose distribution can be explained by some set of '
+                  'model parameters, though may be subject to noise, and "outliers" which are data that do not fit '
+                  'the model. The outliers can come, for example, from extreme values of the noise or from erroneous '
+                  'measurements or incorrect hypotheses about the interpretation of data. RANSAC also assumes that, '
+                  'given a (usually small) set of inliers, there exists a procedure which can estimate the parameters '
+                  'of a model that optimally explains or fits this data.',
+        'tr': 'In non-parametric statistics, the Theil–Sen estimator is a method for robustly fitting a line to '
+              'sample points in the plane (simple linear regression) by choosing the median of the slopes of all '
+              'lines through pairs of points. It has also been called Sen slope estimator,slope selection, '
+              'the single median method, the Kendall robust line-fit method, and the Kendall–Theil robust line. It is '
+              'named after Henri Theil and Pranab K. Sen, who published papers on this method in 1950 and 1968 '
+              'respectively,[8] and after Maurice Kendall because of its relation to the Kendall tau rank correlation '
+              'coefficient. This estimator can be computed efficiently, and is insensitive to outliers. It can be '
+              'significantly more accurate than non-robust simple linear regression (least squares) for skewed and '
+              'heteroskedastic data, and competes well against least squares even for normally distributed data in '
+              'terms of statistical power.[10] It has been called "the most popular nonparametric technique for '
+              'estimating a linear trend".',
+        'huber': 'Huber Regressor is a linear regression model that is robust to outliers.The Huber Regressor '
+                 'optimizes the squared loss for the samples where |(y - Xw)/ sigma| < epsilon and the absolute loss '
+                 'for the samples where |(y - Xw) / sigma| > epsilon, where w and sigma are parameters to be '
+                 'optimized. The parameter sigma makes sure that if y is scaled up or down by a certain factor, '
+                 'one does not need to rescale epsilon to achieve the same robustness. Note that this does not take '
+                 'into account the fact that the different features of X may be of different scales.This makes sure '
+                 'that the loss function is not heavily influenced by the outliers while not completely ignoring '
+                 'their effect.',
+        'kr': 'Kernel ridge regression (KRR) combines Ridge regression and classification (linear least squares with '
+              'l2-norm regularization) with the kernel trick. It thus learns a linear function in the space induced '
+              'by the respective kernel and the data. For non-linear kernels, this corresponds to a non-linear '
+              'function in the original space.The form of the model learned by KernelRidge is identical to support '
+              'vector regression (SVR). However, different loss functions are used: KRR uses squared error loss while '
+              'support vector regression uses -insensitive loss, both combined with l2 regularization. In contrast to '
+              'SVR, fitting KernelRidge can be done in closed-form and is typically faster for medium-sized datasets. '
+              'On the other hand, the learned model is non-sparse and thus slower than SVR, which learns a sparse '
+              'model  at prediction-time.',
+        'svm': 'Support-vector machines (SVMs, also support-vector networks) are supervised learning models with '
+               'associated learning algorithms that analyze data for classification and regression analysis. '
+               'Developed at AT&T Bell Laboratories by Vladimir Vapnik with colleagues (Boser et al., 1992, '
+               'Guyon et al., 1993, Vapnik et al., 1997[citation needed]) SVMs are one of the most robust prediction '
+               'methods, being based on statistical learning frameworks or VC theory proposed by Vapnik (1982, '
+               '1995) and Chervonenkis (1974). Given a set of training examples, each marked as belonging to one of '
+               'two categories, an SVM training algorithm builds a model that assigns new examples to one category or '
+               'the other, making it a non-probabilistic binary linear classifier (although methods such as Platt '
+               'scaling exist to use SVM in a probabilistic classification setting). SVM maps training examples to '
+               'points in space so as to maximise the width of the gap between the two categories. New examples are '
+               'then mapped into that same space and predicted to belong to a category based on which side of the gap '
+               'they fall.In addition to performing linear classification, SVMs can efficiently perform a non-linear '
+               'classification using what is called the kernel trick, implicitly mapping their inputs into '
+               'high-dimensional feature spaces.When data are unlabelled, supervised learning is not possible, '
+               'and an unsupervised learning approach is required, which attempts to find natural clustering of the '
+               'data to groups, and then map new data to these formed groups. The support-vector clustering '
+               'algorithm, created by Hava Siegelmann and Vladimir Vapnik, applies the statistics of support vectors, '
+               'developed in the support vector machines algorithm, to categorize unlabeled data, and is one of the '
+               'most widely used clustering algorithms in industrial applications.',
+        'knn': 'The k-nearest neighbors algorithm (k-NN) is a non-parametric classification method first developed by '
+               'Evelyn Fix and Joseph Hodges in 1951,and later expanded by Thomas Cover.It is used for classification '
+               'and regression. In both cases, the input consists of the k closest training examples in a data set. '
+               'The output depends on whether k-NN is used for classification or regression.In k-NN classification, '
+               'the output is a class membership. An object is classified by a plurality vote of its neighbors, '
+               'with the object being assigned to the class most common among its k nearest neighbors (k is a '
+               'positive integer, typically small). If k = 1, then the object is simply assigned to the class of that '
+               'single nearest neighbor.In k-NN regression, the output is the property value for the object. This '
+               'value is the average of the values of k nearest neighbors.k-NN is a type of classification where the '
+               'function is only approximated locally and all computation is deferred until function evaluation. '
+               'Since this algorithm relies on distance for classification, if the features represent different '
+               'physical units or come in vastly different scales then normalizing the training data can improve its '
+               'accuracy dramatically.Both for classification and regression, a useful technique can be to assign '
+               'weights to the contributions of the neighbors, so that the nearer neighbors contribute more to the '
+               'average than the more distant ones. For example, a common weighting scheme consists in giving each '
+               'neighbor a weight of 1/d, where d is the distance to the neighbor.The neighbors are taken from a set '
+               'of objects for which the class (for k-NN classification) or the object property value (for k-NN '
+               'regression) is known. This can be thought of as the training set for the algorithm, though no '
+               'explicit training step is required.A peculiarity of the k-NN algorithm is that it is sensitive to the '
+               'local structure of the data.',
+        'dt': 'Decision tree learning or induction of decision trees is one of the predictive modelling approaches '
+              'used in statistics, data mining and machine learning. It uses a decision tree (as a predictive model) '
+              'to go from observations about an item (represented in the branches) to conclusions about thetarget '
+              'value (represented in the leaves). Tree models where the target variable can take a discrete set of '
+              'values are called classification trees; in these tree structures, leaves represent class labels and '
+              'branches represent conjunctions of features that lead to those class labels. Decision trees where the '
+              'target variable can take continuous values (typically real numbers) are called regression trees. '
+              'Decision trees are among the most popular machine learning algorithms given their intelligibility and '
+              'simplicity.In decision analysis, a decision tree can be used to visually and explicitly represent '
+              'decisions and decision making. In data mining, a decision tree describes data (but the resulting '
+              'classification tree can be an input for decision making). This page deals with decision trees in data '
+              'mining.Along with classification,Decision trees can also be applied to regression problems.',
+        'rf': 'Random forests or random decision forests are an ensemble learning method for classification, '
+              'regression and other tasks that operates by constructing a multitude of decision trees at training '
+              'time. For classification tasks, the output of the random forest is the class selected by most trees. '
+              'For regression tasks, the mean or average prediction of the individual trees is returned.Random '
+              'decision forests correct for decision trees habit of overfitting to their training set.Random forests '
+              'generally outperform decision trees, but their accuracy is lower than gradient boosted trees. However, '
+              'data characteristics can affect their performance.The first algorithm for random decision forests was '
+              'created in 1995 by Tin Kam Ho using the random subspace method, which is a way to implement the '
+              '"stochastic discrimination" approach to classification proposed by Eugene Kleinberg.An extension of '
+              'the algorithm was developed by Leo Breiman and Adele Cutler,who registered "Random Forests" as a '
+              'trademark in 2006 (as of 2019, owned by Minitab, Inc.). The extension combines Breiman "bagging" idea '
+              'and random selection of features, introduced first by Ho and later independently by Amit and Geman in '
+              'order to construct a collection of decision trees with controlled variance.Random forests are '
+              'frequently used as blackbox models in businesses, as they generate reasonable predictions across a '
+              'wide range of data while requiring little configuration.',
+        'et': 'A meta estimator that fits a number of randomized decision trees (a.k.a. extra-trees) on various '
+              'sub-samples of the dataset and uses averaging to improve the predictive accuracy and control '
+              'over-fitting.',
+        'ada': 'The core principle of AdaBoost is to fit a sequence of weak learners (i.e., models that are only '
+               'slightly better than random guessing, such as small decision trees) on repeatedly modified versions '
+               'of the data. The predictions from all of them are then combined through a weighted majority vote (or '
+               'sum) to produce the final prediction. The data modifications at each so-called boosting iteration '
+               'consist of applying weights to each of the training samples. Initially, those weights are all set so '
+               'that the first step simply trains a weak learner on the original data. For each successive iteration, '
+               'the sample weights are individually modified and the learning algorithm is reapplied to the '
+               'reweighted data. At a given step, those training examples that were incorrectly predicted by the '
+               'boosted model induced at the previous step have their weights increased, whereas the weights are '
+               'decreased for those that were predicted correctly. As iterations proceed, examples that are difficult '
+               'to predict receive ever-increasing influence. Each subsequent weak learner is thereby forced to '
+               'concentrate on the examples that are missed by the previous ones in the sequence.',
+        'gbr': 'Gradient boosting is a machine learning technique for regression, classification and other tasks, '
+               'which produces a prediction model in the form of an ensemble of weak prediction models, '
+               'typically decision trees.When a decision tree is the weak learner, the resulting algorithm is called '
+               'gradient boosted trees, which usually outperforms random forest.It builds the model in a stage-wise '
+               'fashion like other boosting methods do, and it generalizes them by allowing optimization of an '
+               'arbitrary differentiable loss function.',
+        'mlp': 'A multilayer perceptron (MLP) is a class of feedforward artificial neural network (ANN). The term MLP '
+               'is used ambiguously, sometimes loosely to mean any feedforward ANN, sometimes strictly to refer to '
+               'networks composed of multiple layers of perceptrons (with threshold activation). Multilayer '
+               'perceptrons are sometimes colloquially referred to as "vanilla" neural networks, especially when they '
+               'have a single hidden layer.An MLP consists of at least three layers of nodes: an input layer, '
+               'a hidden layer and an output layer. Except for the input nodes, each node is a neuron that uses a '
+               'nonlinear activation function. MLP utilizes a supervised learning technique called backpropagation '
+               'for training.Its multiple layers and non-linear activation distinguish MLP from a linear perceptron. '
+               'It can distinguish data that is not linearly separable.',
+        'xgboost': 'XGBoost is an open-source software library which provides a regularizing gradient boosting '
+                   'framework. It aims to provide a scalable, portable and distributed gradient boosting (GBM, GBRT, '
+                   'GBDT) library". It runs on a single machine, as well as the distributed processing frameworks '
+                   'Apache Hadoop, Apache Spark, Apache Flins, and Dask.',
+        'lightgbm': 'Gradient boosting is a machine learning technique for regression, classification and other '
+                    'tasks, which produces a prediction model in the form of an ensemble of weak prediction models, '
+                    'typically decision trees.When a decision tree is the weak learner, the resulting algorithm is '
+                    'called gradient boosted trees, which usually outperforms random forest.It builds the model in a '
+                    'stage-wise fashion like other boosting methods do, and it generalizes them by allowing '
+                    'optimization of an arbitrary differentiable loss function.',
+        'catboost': 'CatBoost is an algorithm for gradient boosting on decision trees. It is developed by Yandex '
+                    'researchers and engineers, and is used for search, recommendation systems, personal assistant, '
+                    'self-driving cars, weather prediction and many other tasks at Yandex and in other companies, '
+                    'including CERN, Cloudflare, Careem taxi. '
     }
     return model_name_dict[model_name]
 
@@ -140,67 +365,67 @@ def get_model_definition_anomaly_detection(model_name):
         'histogram': '',
         'knn': '',
         'lof': 'The Local Outlier Factor (LOF) algorithm is an unsupervised anomaly detection method which computes '
-                'the local density deviation of a given data point with respect to its neighbors. It considers as '
-                'outliers the samples that have a substantially lower density than their neighbors. This example '
-                'shows how to use LOF for novelty detection. Note that when LOF is used for novelty detection you '
-                'MUST not use predict, decision_function and score_samples on the training set as this would lead to '
-                'wrong results. You must only use these methods on new unseen data (which are not in the training '
-                'set). See User Guide: for details on the difference between outlier detection and novelty detection '
-                'and how to use LOF for outlier detection.The number of neighbors considered, (parameter n_neighbors) '
-                'is typically set 1) greater than the minimum number of samples a cluster has to contain, '
-                'so that other samples can be local outliers relative to this cluster, and 2) smaller than the '
-                'maximum number of close by samples that can potentially be local outliers. In practice, '
-                'such information is generally not available, and taking n_neighbors=20 appears to work well in '
-                'general.',
+               'the local density deviation of a given data point with respect to its neighbors. It considers as '
+               'outliers the samples that have a substantially lower density than their neighbors. This example '
+               'shows how to use LOF for novelty detection. Note that when LOF is used for novelty detection you '
+               'MUST not use predict, decision_function and score_samples on the training set as this would lead to '
+               'wrong results. You must only use these methods on new unseen data (which are not in the training '
+               'set). See User Guide: for details on the difference between outlier detection and novelty detection '
+               'and how to use LOF for outlier detection.The number of neighbors considered, (parameter n_neighbors) '
+               'is typically set 1) greater than the minimum number of samples a cluster has to contain, '
+               'so that other samples can be local outliers relative to this cluster, and 2) smaller than the '
+               'maximum number of close by samples that can potentially be local outliers. In practice, '
+               'such information is generally not available, and taking n_neighbors=20 appears to work well in '
+               'general.',
         'svm': '',
         'pca': 'The principal components of a collection of points in a real coordinate space are a sequence of  '
-                'unit vectors, where the i-th vector is the direction of a line that best fits the data while being '
-                'orthogonal to the first i-1 vectors. Here, a best-fitting line is defined as one that minimizes the '
-                'average squared distance from the points to the line. These directions constitute an orthonormal '
-                'basis in which different individual dimensions of the data are linearly uncorrelated. Principal '
-                'component analysis (PCA) is the process of computing the principal components and using them to '
-                'perform a change of basis on the data, sometimes using only the first few principal components and '
-                'ignoring the rest.PCA is used in exploratory data analysis and for making predictive models. It is '
-                'commonly used for dimensionality reduction by projecting each data point onto only the first few '
-                'principal components to obtain lower-dimensional data while preserving as much of the data variation '
-                'as possible. The first principal component can equivalently be defined as a direction that maximizes '
-                'the variance of the projected data. The i-th principal component can be taken as a direction '
-                'orthogonal to the first i-1 principal components that maximizes the variance of the projected '
-                'data.From either objective, it can be shown that the principal components are eigenvectors of the '
-                'data covariance matrix. Thus, the principal components are often computed by eigen decomposition of '
-                'the data covariance matrix or singular value decomposition of the data matrix. PCA is the simplest '
-                'of the true eigenvector-based multivariate analyses and is closely related to factor analysis. '
-                'Factor analysis typically incorporates more domain specific assumptions about the underlying '
-                'structure and solves eigenvectors of a slightly different matrix. PCA is also related to canonical '
-                'correlation analysis (CCA). CCA defines coordinate systems that optimally describe the '
-                'cross-covariance between two datasets while PCA defines a new orthogonal coordinate system that '
-                'optimally describes variance in a single dataset.Robust and L1-norm-based variants of standard PCA '
-                'have also been proposed.',
+               'unit vectors, where the i-th vector is the direction of a line that best fits the data while being '
+               'orthogonal to the first i-1 vectors. Here, a best-fitting line is defined as one that minimizes the '
+               'average squared distance from the points to the line. These directions constitute an orthonormal '
+               'basis in which different individual dimensions of the data are linearly uncorrelated. Principal '
+               'component analysis (PCA) is the process of computing the principal components and using them to '
+               'perform a change of basis on the data, sometimes using only the first few principal components and '
+               'ignoring the rest.PCA is used in exploratory data analysis and for making predictive models. It is '
+               'commonly used for dimensionality reduction by projecting each data point onto only the first few '
+               'principal components to obtain lower-dimensional data while preserving as much of the data variation '
+               'as possible. The first principal component can equivalently be defined as a direction that maximizes '
+               'the variance of the projected data. The i-th principal component can be taken as a direction '
+               'orthogonal to the first i-1 principal components that maximizes the variance of the projected '
+               'data.From either objective, it can be shown that the principal components are eigenvectors of the '
+               'data covariance matrix. Thus, the principal components are often computed by eigen decomposition of '
+               'the data covariance matrix or singular value decomposition of the data matrix. PCA is the simplest '
+               'of the true eigenvector-based multivariate analyses and is closely related to factor analysis. '
+               'Factor analysis typically incorporates more domain specific assumptions about the underlying '
+               'structure and solves eigenvectors of a slightly different matrix. PCA is also related to canonical '
+               'correlation analysis (CCA). CCA defines coordinate systems that optimally describe the '
+               'cross-covariance between two datasets while PCA defines a new orthogonal coordinate system that '
+               'optimally describes variance in a single dataset.Robust and L1-norm-based variants of standard PCA '
+               'have also been proposed.',
         'mcd': 'The minimum covariance determinant (MCD) estimator is one of the first affine equivariant and highly '
-                'robust estimators of multivariate location and scatter.1,2 Being resistant to outlying observations,'
-                'makes the MCD very helpful in outlier detection.Although already introduced in 1984, its main use '
-                'has only started since the introduction of the computationally efficient FAST-MCD algorithm of '
-                'Rousseeuw and Van Driessen.Since then, the MCD has been applied in numerous fields such as medicine, '
-                'finance, image analysis, and chemistry. Moreover, the MCD has also been used to develop many robust '
-                'multivariate techniques, such as principal component analysis, factor analysis, and multiple '
-                'regression.',
+               'robust estimators of multivariate location and scatter.1,2 Being resistant to outlying observations,'
+               'makes the MCD very helpful in outlier detection.Although already introduced in 1984, its main use '
+               'has only started since the introduction of the computationally efficient FAST-MCD algorithm of '
+               'Rousseeuw and Van Driessen.Since then, the MCD has been applied in numerous fields such as medicine, '
+               'finance, image analysis, and chemistry. Moreover, the MCD has also been used to develop many robust '
+               'multivariate techniques, such as principal component analysis, factor analysis, and multiple '
+               'regression.',
         'sod': 'Rare data in a large-scale database are called outliers that reveal significant information in the '
-                'real world. The subspace-based outlier detection is regarded as a feasible approach in very high '
-                'dimensional space. However, the outliers found in subspaces are only part of the true outliers in '
-                'high dimensional space, indeed. The outliers hidden in normal-clustered points are sometimes '
-                'neglected in the projected dimensional subspace. In this paper, we propose a robust subspace method '
-                'for detecting such inner outliers in a given dataset, which uses two dimensional-projections: '
-                'detecting outliers in subspaces with local density ratio in the first projected dimensions; finding '
-                'outliers by comparing neighbors positions in the second projected dimensions. Each points weight is '
-                'calculated by summing up all related values got in the two steps projected dimensions, and then the '
-                'points scoring the largest weight values are taken as outliers. By taking a series of experiments '
-                'with the number of dimensions from 10 to 10000, the results show that our proposed method achieves '
-                'high precision in the case of extremely high dimensional space, and works well in low dimensional '
-                'space.',
+               'real world. The subspace-based outlier detection is regarded as a feasible approach in very high '
+               'dimensional space. However, the outliers found in subspaces are only part of the true outliers in '
+               'high dimensional space, indeed. The outliers hidden in normal-clustered points are sometimes '
+               'neglected in the projected dimensional subspace. In this paper, we propose a robust subspace method '
+               'for detecting such inner outliers in a given dataset, which uses two dimensional-projections: '
+               'detecting outliers in subspaces with local density ratio in the first projected dimensions; finding '
+               'outliers by comparing neighbors positions in the second projected dimensions. Each points weight is '
+               'calculated by summing up all related values got in the two steps projected dimensions, and then the '
+               'points scoring the largest weight values are taken as outliers. By taking a series of experiments '
+               'with the number of dimensions from 10 to 10000, the results show that our proposed method achieves '
+               'high precision in the case of extremely high dimensional space, and works well in low dimensional '
+               'space.',
         'sos': 'Stochastic Outlier Selection is an unsupervised outlier-selection algorithm that takes as input '
-                'either a feature matrix or a dissimilarity matrix and outputs for each data point an outlier '
-                'probability. Intuitively, a data point is considered to be an outlier when the other data points '
-                'have insufficient affinity with it.'
+               'either a feature matrix or a dissimilarity matrix and outputs for each data point an outlier '
+               'probability. Intuitively, a data point is considered to be an outlier when the other data points '
+               'have insufficient affinity with it.'
     }
     return model_name_dict[model_name]
 
@@ -394,7 +619,6 @@ def get_plot_definition(plot):
                 'or groups of data points and their relative proximities.'
     }
     return plot_definition[plot]
-
 
 
 def get_image_name(plot):
