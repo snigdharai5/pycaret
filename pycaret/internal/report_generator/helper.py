@@ -36,13 +36,6 @@ def get_model_definition(model_name, model_type):
 
 def get_model_definition_regression(model_name):
     model_name_dict = {
-
-    }
-    return model_name_dict[model_name]
-
-
-def get_model_definition_classification(model_name):
-    model_name_dict = {
         'lr': 'Linear regression model with a single explanatory variable.It concerns two-dimensional sample points '
               'with one independent variable and one dependent variableand finds a linear function that, '
               'as accurately as possible, predicts the dependent variable values as a function of the independent '
@@ -266,6 +259,13 @@ def get_model_definition_classification(model_name):
                     'researchers and engineers, and is used for search, recommendation systems, personal assistant, '
                     'self-driving cars, weather prediction and many other tasks at Yandex and in other companies, '
                     'including CERN, Cloudflare, Careem taxi. '
+    }
+    return model_name_dict[model_name]
+
+
+def get_model_definition_classification(model_name):
+    model_name_dict = {
+
     }
     return model_name_dict[model_name]
 
