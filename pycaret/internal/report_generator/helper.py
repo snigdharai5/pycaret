@@ -265,6 +265,49 @@ def get_model_definition_regression(model_name):
 
 def get_model_definition_classification(model_name):
     model_name_dict = {
+        'lr': 'Linear regression model with a single explanatory variable.It concerns two-dimensional sample points '
+              'with one independent variable and one dependent variableand finds a linear function that, '
+              'as accurately as possible, predicts the dependent variable values as a function of the independent '
+              'variable. It fits a linear model with coefficients w = (w1, …, wp) to minimize the residual sum of '
+              'squares between the observed targets in the dataset, and the targets predicted by the linear '
+              'approximation.',
+        'knn': 'The k-nearest neighbors algorithm (k-NN) is a non-parametric classification method first developed by '
+               'Evelyn Fix and Joseph Hodges in 1951,and later expanded by Thomas Cover.It is used for classification '
+               'and regression. In both cases, the input consists of the k closest training examples in a data set. '
+               'The output depends on whether k-NN is used for classification or regression.In k-NN classification, '
+               'the output is a class membership. An object is classified by a plurality vote of its neighbors, '
+               'with the object being assigned to the class most common among its k nearest neighbors (k is a '
+               'positive integer, typically small). If k = 1, then the object is simply assigned to the class of that '
+               'single nearest neighbor.In k-NN regression, the output is the property value for the object. This '
+               'value is the average of the values of k nearest neighbors.k-NN is a type of classification where the '
+               'function is only approximated locally and all computation is deferred until function evaluation. '
+               'Since this algorithm relies on distance for classification, if the features represent different '
+               'physical units or come in vastly different scales then normalizing the training data can improve its '
+               'accuracy dramatically.Both for classification and regression, a useful technique can be to assign '
+               'weights to the contributions of the neighbors, so that the nearer neighbors contribute more to the '
+               'average than the more distant ones. For example, a common weighting scheme consists in giving each '
+               'neighbor a weight of 1/d, where d is the distance to the neighbor.The neighbors are taken from a set '
+               'of objects for which the class (for k-NN classification) or the object property value (for k-NN '
+               'regression) is known. This can be thought of as the training set for the algorithm, though no '
+               'explicit training step is required.A peculiarity of the k-NN algorithm is that it is sensitive to the '
+               'local structure of the data.',
+        'nb': 'A Naive Bayes classifier is a probabilistic machine learning model that’s used for classification task. The crux of the classifier is based on the Bayes theorem.Using Bayes theorem, we can find the probability of A happening, given that B has occurred. Here, B is the evidence and A is the hypothesis. The assumption made here is that the predictors/features are independent. That is presence of one particular feature does not affect the other. Hence it is called naive.',
+        'dt': 'Decision Tree Classifier is a simple and widely used classification technique. It applies a straitforward idea to solve the classification problem. Decision Tree Classifier poses a series of carefully crafted questions about the attributes of the test record. Each time time it receive an answer, a follow-up question is asked until a conclusion about the calss label of the record is reached.',
+        'svm': 'It is the most basic type of kernel, usually one dimensional in nature. It proves to be the best function when there are lots of features. The linear kernel is mostly preferred for text-classification problems as most of these kinds of classification problems can be linearly separated.',
+        'rbfsvm': 'It is one of the most preferred and used kernel functions in svm. It is usually chosen for non-linear data. It helps to make proper separation when there is no prior knowledge of data.',
+        'gpc': 'Gaussian Processes are a generalization of the Gaussian probability distribution and can be used as the basis for sophisticated non-parametric machine learning algorithms for classification and regression.',
+        'mlp': 'MLPClassifier trains iteratively since at each time step the partial derivatives of the loss function with respect to the model parameters are computed to update the parameters.It can also have a regularization term added to the loss function that shrinks model parameters to prevent overfitting.',
+        'ridge': ' The Ridge Classifier,  based on Ridge regression method, converts the label data into [-1, 1] and solves the problem with regression method. The highest value in prediction is accepted as a target class and for multiclass data muilti-output regression is applied.',
+        'rf':'A random forest is a meta estimator that fits a number of decision tree classifiers on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting. The sub-sample size is controlled with the max_samples parameter if bootstrap=True (default), otherwise the whole dataset is used to build each tree.',
+        'qda': 'Quadratic Discriminant Analysis (QDA) is a generative model. QDA assumes that each class follow a Gaussian distribution. The class-specific prior is simply the proportion of data points that belong to the class. The class-specific mean vector is the average of the input variables that belong to the class.',
+        'ada': "An AdaBoost [1] classifier is a meta-estimator that begins by fitting a classifier on the original dataset and then fits additional copies of the classifier on the same dataset but where the weights of incorrectly classified instances are adjusted such that subsequent classifiers focus more on difficult cases.",
+        'gbc': "Gradient Boosting for classification.Gradient Boosting builds an additive model in a forward stage-wise fashion; it allows for the optimization of arbitrary differentiable loss functions. In each stage n_classes_ regression trees are fit on the negative gradient of the binomial or multinomial deviance loss function. Binary classification is a special case where only a single regression tree is induced.",
+        'lda': 'Linear discriminant analysis (LDA), normal discriminant analysis (NDA), or discriminant function analysis is a generalization of Fishers linear discriminant, a method used in statistics and other fields, to find a linear combination of features that characterizes or separates two or more classes of objects or events. The resulting combination may be used as a linear classifier, or, more commonly, for dimensionality reduction before later classification.',
+        'et':"An extra-trees classifier.This class implements a meta estimator that fits a number of randomized decision trees (a.k.a. extra-trees) on various sub-samples of the dataset and uses averaging to improve the predictive accuracy and control over-fitting.",
+        'xgboost': "Gradient boosting is a machine learning technique for regression and classification problems, which produces a prediction model in the form of an ensemble of weak prediction models, typically decision trees. It builds the model in a stage-wise fashion like other boosting methods do, and it generalizes them by allowing optimization of an arbitrary differentiable loss function.XGBoost is one of the implementations of Gradient Boosting concept, but what makes XGBoost unique is that it uses “a more regularized model formalization to control over-fitting, which gives it better performance,” according to the author of the algorithm, Tianqi Chen. Therefore, it helps to reduce overfitting.",
+        'lightgbm': "Light Gradient Boosted Machine, or LightGBM for short, is an open-source library that provides an efficient and effective implementation of the gradient boosting algorithm.LightGBM extends the gradient boosting algorithm by adding a type of automatic feature selection as well as focusing on boosting examples with larger gradients. This can result in a dramatic speedup of training and improved predictive performance.",
+        "catboost":'CatBoost is a recently open-sourced machine learning algorithm from Yandex. It can easily integrate with deep learning frameworks like Google’s TensorFlow and Apple’s Core ML. It can work with diverse data types to help solve a wide range of problems that businesses face today. To top it up, it provides best-in-class accuracy'
+
 
     }
     return model_name_dict[model_name]
